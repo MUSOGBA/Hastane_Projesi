@@ -24,12 +24,16 @@ namespace Hastane_Projesi
 
         private void BtnKaydet_Click(object sender, EventArgs e)
         {
-            SqlCommand komut2 = new SqlCommand("insert into Tbl_Randevular (RandevuTarih,RandevuSaat,RandevuBrans,RandevuDoktor,RandevuDurum) values (@r1,@r2,@r3,@r4,@r5)", bgl.baglanti());
+
+           
+
+            SqlCommand komut2 = new SqlCommand("insert into Tbl_Randevular (RandevuTarih,RandevuSaat,RandevuBrans,RandevuDoktor,RandevuDurum,HastaTc) values (@r1,@r2,@r3,@r4,@r5,@r6)", bgl.baglanti());
             komut2.Parameters.AddWithValue("@r1", MskTarih.Text);
             komut2.Parameters.AddWithValue("@r2", MskSaat.Text);
             komut2.Parameters.AddWithValue("@r3", CmbBrans.Text);
             komut2.Parameters.AddWithValue("@r4", CmbDoktorlar.Text);
             komut2.Parameters.AddWithValue("@r5", ChkDurum.Checked);
+            komut2.Parameters.AddWithValue("@r6",MskTC.Text);
             komut2.ExecuteNonQuery();
             bgl.baglanti().Close();
             MessageBox.Show("Randevunuz Başarıyla Oluşturulmuştur.","Randevu Bilgisi",MessageBoxButtons.OK,MessageBoxIcon.Information);
@@ -63,8 +67,42 @@ namespace Hastane_Projesi
 
         private void BtnDoktorPaneli_Click(object sender, EventArgs e)
         {
-            FrmDoktorPaneli fr = new FrmDoktorPaneli();
-            fr.Show();
+            FrmDoktorPaneli fdr = new FrmDoktorPaneli();
+            fdr.Show();
+        }
+
+        private void BtnBransPaneli_Click(object sender, EventArgs e)
+        {
+            FrmBransPaneli fbrns = new FrmBransPaneli();
+            fbrns.Show();
+        }
+
+        private void BtnRandevuListesi_Click(object sender, EventArgs e)
+        {
+            FrmRandevuListesi frr = new FrmRandevuListesi();
+            frr.Show();
+        }
+
+        private void BtnGuncelle_Click(object sender, EventArgs e)
+        {
+            SqlCommand komutguncelle = new SqlCommand("update Tbl_randevular set RandevuTarih=@r1,RandevuSaat=@r2,RandevuBrans=@r3,RandevuDoktor=@r4,RandevuDurum=@r6 where HastaTc=@r5",bgl.baglanti());
+            komutguncelle.Parameters.AddWithValue("@r1", MskTarih.Text);
+            komutguncelle.Parameters.AddWithValue("@r2", MskSaat.Text);
+            komutguncelle.Parameters.AddWithValue("@r3", CmbBrans.Text);
+            komutguncelle.Parameters.AddWithValue("@r4", CmbDoktorlar.Text);
+            komutguncelle.Parameters.AddWithValue("@r5", MskTC.Text);
+            komutguncelle.Parameters.AddWithValue("@r6", ChkDurum.Checked);
+            komutguncelle.ExecuteNonQuery();
+            bgl.baglanti().Close();
+            MessageBox.Show("Güncelleme başarılı");
+
+
+        }
+
+        private void BtnDuyurular_Click(object sender, EventArgs e)
+        {
+            FrmDuyurular frmduy = new FrmDuyurular();
+            frmduy.Show();
         }
 
         private void FrmSekreterDetay_Load(object sender, EventArgs e)

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDoktorGirisi));
             this.TxtSifre = new System.Windows.Forms.TextBox();
             this.MskTC = new System.Windows.Forms.MaskedTextBox();
             this.BtnGirisYap = new System.Windows.Forms.Button();
@@ -42,6 +43,7 @@
             this.TxtSifre.Name = "TxtSifre";
             this.TxtSifre.Size = new System.Drawing.Size(113, 20);
             this.TxtSifre.TabIndex = 12;
+            this.TxtSifre.UseSystemPasswordChar = true;
             // 
             // MskTC
             // 
@@ -59,6 +61,7 @@
             this.BtnGirisYap.TabIndex = 10;
             this.BtnGirisYap.Text = "GİRİŞ YAP";
             this.BtnGirisYap.UseVisualStyleBackColor = true;
+            this.BtnGirisYap.Click += new System.EventHandler(this.BtnGirisYap_Click);
             // 
             // label3
             // 
@@ -92,8 +95,10 @@
             // 
             // FrmDoktorGirisi
             // 
+            this.AcceptButton = this.BtnGirisYap;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.CadetBlue;
             this.ClientSize = new System.Drawing.Size(460, 328);
             this.Controls.Add(this.TxtSifre);
@@ -102,20 +107,21 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "FrmDoktorGirisi";
-            this.Text = "FrmDoktorGirisi";
+            this.Text = "Doktor Girisi";
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox TxtSifre;
-        private System.Windows.Forms.MaskedTextBox MskTC;
         private System.Windows.Forms.Button BtnGirisYap;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.TextBox TxtSifre;
+        public System.Windows.Forms.MaskedTextBox MskTC;
     }
 }
